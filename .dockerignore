@@ -1,7 +1,9 @@
 .git
-__pycache__
-*.pyc
+**/__pycache__
+**/*.pyc
 .env
-Dockerfile
-tmp/
-data/
+Dockerfile*
+**/tmp/
+main/xiaozhi-server/data/
+**/.venv
+**/venv
