@@ -31,12 +31,12 @@ change_role_function_desc = {
     "type": "function",
     "function": {
         "name": "change_role",
-        "description": "当用户想切换角色/模型性格/助手名字时调用,可选的角色有：[机车女友,英语老师,好奇小男孩]",
+        "description": "Call this when the user wants to switch the role, model personality, or assistant name. Available personas include biker girlfriend, English teacher, and curious little boy.",
         "parameters": {
             "type": "object",
             "properties": {
-                "role_name": {"type": "string", "description": "要切换的角色名字"},
-                "role": {"type": "string", "description": "要切换的角色的职业"},
+                "role_name": {"type": "string", "description": "Name of the role to switch to"},
+                "role": {"type": "string", "description": "Occupation of the role to switch to"},
             },
             "required": ["role", "role_name"],
         },

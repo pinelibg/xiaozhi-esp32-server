@@ -15,7 +15,7 @@ hass_set_state_function_desc = {
     "type": "function",
     "function": {
         "name": "hass_set_state",
-        "description": "设置homeassistant里设备的状态,包括开、关,调整灯光亮度、颜色、色温,调整播放器的音量,设备的暂停、继续、静音操作",
+        "description": "Set the state of devices in Home Assistant, including turning devices on or off, adjusting light brightness, color, and color temperature, adjusting player volume, and pausing, resuming, muting, or unmuting devices.",
         "parameters": {
             "type": "object",
             "properties": {
@@ -24,27 +24,27 @@ hass_set_state_function_desc = {
                     "properties": {
                         "type": {
                             "type": "string",
-                            "description": "需要操作的动作,打开设备:turn_on,关闭设备:turn_off,增加亮度:brightness_up,降低亮度:brightness_down,设置亮度:brightness_value,增加音量:volume_up,降低音量:volume_down,设置音量:volume_set,设置色温:set_kelvin,设置颜色:set_color,设备暂停:pause,设备继续:continue,静音/取消静音:volume_mute",
+                            "description": "Action to perform: turn on device: turn_on, turn off device: turn_off, increase brightness: brightness_up, decrease brightness: brightness_down, set brightness: brightness_value, increase volume: volume_up, decrease volume: volume_down, set volume: volume_set, set color temperature: set_kelvin, set color: set_color, pause device: pause, resume device: continue, mute or unmute: volume_mute",
                         },
                         "input": {
                             "type": "integer",
-                            "description": "只有在设置音量,设置亮度时候才需要,有效值为1-100,对应音量和亮度的1%-100%",
+                            "description": "Required only when setting volume or brightness. Valid values are 1-100, corresponding to 1%-100% volume or brightness.",
                         },
                         "is_muted": {
                             "type": "string",
-                            "description": "只有在设置静音操作时才需要,设置静音的时候该值为true,取消静音时该值为false",
+                            "description": "Required only for mute operations. Use true to mute and false to unmute.",
                         },
                         "rgb_color": {
                             "type": "array",
                             "items": {"type": "integer"},
-                            "description": "只有在设置颜色时需要,这里填目标颜色的rgb值",
+                            "description": "Required only when setting color. Provide the target RGB color value here.",
                         },
                     },
                     "required": ["type"],
                 },
                 "entity_id": {
                     "type": "string",
-                    "description": "需要操作的设备id,homeassistant里的entity_id",
+                    "description": "Device ID to operate on, the entity_id in Home Assistant",
                 },
             },
             "required": ["state", "entity_id"],

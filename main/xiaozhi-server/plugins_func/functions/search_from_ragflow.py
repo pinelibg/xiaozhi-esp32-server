@@ -15,10 +15,10 @@ SEARCH_FROM_RAGFLOW_FUNCTION_DESC = {
     "type": "function",
     "function": {
         "name": "search_from_ragflow",
-        "description": "从知识库中查询信息",
+        "description": "Search for information in the knowledge base",
         "parameters": {
             "type": "object",
-            "properties": {"question": {"type": "string", "description": "查询的问题"}},
+            "properties": {"question": {"type": "string", "description": "Question to query"}},
             "required": ["question"],
         },
     },

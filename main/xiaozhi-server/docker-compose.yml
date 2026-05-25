@@ -3,13 +3,17 @@
 version: '3'
 services:
   xiaozhi-esp32-server:
-    image: ghcr.nju.edu.cn/xinnan-tech/xiaozhi-esp32-server:server_latest
+    # image: ghcr.nju.edu.cn/xinnan-tech/xiaozhi-esp32-server:server_latest
+    build:
+      context: ../..
+      dockerfile: Dockerfile-server-base
+    command: ["python", "app.py"]
     container_name: xiaozhi-esp32-server
     restart: always
     security_opt:
       - seccomp:unconfined
     environment:
-      - TZ=Asia/Shanghai
+      - TZ=Asia/Tokyo
     ports:
       # ws服务端
       - "8000:8000"
@@ -17,6 +21,4 @@ services:
       - "8003:8003"
     volumes:
       # 配置文件目录
-      - ./data:/opt/xiaozhi-esp32-server/data
-      # 模型文件挂接，很重要
-      - ./models/SenseVoiceSmall/model.pt:/opt/xiaozhi-esp32-server/models/SenseVoiceSmall/model.pt
+      - .:/opt/xiaozhi-esp32-server

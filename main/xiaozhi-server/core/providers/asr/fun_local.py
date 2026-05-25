@@ -80,7 +80,7 @@ class ASRProvider(ASRProviderBase):
                     self.model.generate,
                     input=artifacts.pcm_bytes,
                     cache={},
-                    language="auto",
+                    language="ja",
                     use_itn=True,
                     batch_size_s=60,
                 )

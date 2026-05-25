@@ -59,13 +59,13 @@ DIRECT_ANSWER_TOOL = {
     "type": "function",
     "function": {
         "name": "direct_answer",
-        "description": "当用户的请求不匹配其他任何工具时，可用此选项直接回复。将回复内容写在response参数里。",
+        "description": "Use this option to reply directly when the user's request does not match any other tool. Put the reply content in the response parameter.",
         "parameters": {
             "type": "object",
             "properties": {
                 "response": {
                     "type": "string",
-                    "description": "你回复用户的完整内容",
+                    "description": "The complete reply content to return to the user",
                 },
             },
             "required": ["response"],
@@ -523,7 +523,7 @@ class ConnectionHandler:
             self._init_report_threads()
             """更新系统提示词"""
             self._init_prompt_enhancement()
-            """注入工具调用few-shot示例（仅function_call模式）"""
+            """ツール呼び出し few-shot 例を注入（function_call モードのみ）"""
             self._inject_tool_call_fewshot()
 
         except Exception as e:
@@ -541,10 +541,10 @@ class ConnectionHandler:
             self.logger.bind(tag=TAG).debug("系统提示词已增强更新")
 
     def _inject_tool_call_fewshot(self):
-        """注入工具调用 few-shot 示例到对话历史。
-        结构：正样本（工具调用示例）放在动态 system 之前，可命中前缀缓存；
-        负样本（直接回答示例）放在动态 system 之后、紧挨真实用户消息，
-        确保模型在处理用户消息前最后看到的是"不调工具"的行为模式。
+        """ツール呼び出し few-shot 例を対話履歴に注入する。
+        構造: 正例（ツール呼び出し例）は動的 system の前に置き、prefix cache を効かせる。
+        負例（直接回答例）は動的 system の後、実際のユーザーメッセージの直前に置き、
+        モデルがユーザーメッセージを処理する前に最後に見る動作パターンを「ツールを呼ばない」にする。
         """
         if self.intent_type != "function_call":
             return
@@ -557,48 +557,48 @@ class ConnectionHandler:
 
         tool_names = {t.get("function", {}).get("name") for t in tools}
 
-        # === few-shot 示例（is_temporary）===
-        # 展示 direct_answer 携带 response 参数的用法，一次调用完成回复
+        # === few-shot 例（is_temporary）===
+        # direct_answer が response パラメータを持ち、1 回の呼び出しで応答を完了する使い方を示す
 
-        # 示例1：direct_answer（回复内容写在 response 参数里，无需递归）
+        # 例1: direct_answer（応答内容は response パラメータに書き、再帰は不要）
         da_tc_id = "fewshot_da_001"
-        self.dialogue.put(Message(role="user", content="给我讲个故事吧", is_temporary=True))
+        self.dialogue.put(Message(role="user", content="お話を聞かせて", is_temporary=True))
         self.dialogue.put(Message(
             role="assistant",
             tool_calls=[{
                 "id": da_tc_id,
-                "function": {"arguments": '{"response": "好呀，你想听什么类型的呀？童话、冒险还是搞笑的？选一个我给你开讲~"}', "name": "direct_answer"},
+                "function": {"arguments": '{"response": "いいよ。どんなお話がいい？童話、冒険、面白い話から選んでくれたら始めるね。"}', "name": "direct_answer"},
                 "type": "function", "index": 0,
             }],
             is_temporary=True,
         ))
         self.dialogue.put(Message(
             role="tool", tool_call_id=da_tc_id,
-            content="已直接回复", is_temporary=True,
+            content="直接応答済み", is_temporary=True,
         ))
 
-        # 示例2：真实工具调用（handle_exit_intent）
+        # 例2: 実際のツール呼び出し（handle_exit_intent）
         if "handle_exit_intent" in tool_names:
             tc_id = "fewshot_exit_001"
-            self.dialogue.put(Message(role="user", content="拜拜", is_temporary=True))
+            self.dialogue.put(Message(role="user", content="バイバイ", is_temporary=True))
             self.dialogue.put(Message(
                 role="assistant",
                 tool_calls=[{
                     "id": tc_id,
-                    "function": {"arguments": '{"say_goodbye": "再见，下次再聊~"}', "name": "handle_exit_intent"},
+                    "function": {"arguments": '{"say_goodbye": "またね。次回また話そう。"}', "name": "handle_exit_intent"},
                     "type": "function", "index": 0,
                 }],
                 is_temporary=True,
             ))
             self.dialogue.put(Message(
                 role="tool", tool_call_id=tc_id,
-                content="退出意图已处理", is_temporary=True,
+                content="終了意図を処理済み", is_temporary=True,
             ))
             self.dialogue.put(Message(
-                role="assistant", content="再见，下次再聊~", is_temporary=True,
+                role="assistant", content="またね。次回また話そう。", is_temporary=True,
             ))
 
-        self.logger.bind(tag=TAG).debug("已注入工具调用 few-shot 示例")
+        self.logger.bind(tag=TAG).debug("ツール呼び出し few-shot 例を注入済み")
 
     def _init_report_threads(self):
         """初始化ASR和TTS上报线程"""

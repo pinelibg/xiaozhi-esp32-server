@@ -7,13 +7,13 @@ import cnlunar
 from datetime import datetime
 
 WEEKDAY_MAP = {
-    "Monday": "星期一",
-    "Tuesday": "星期二", 
-    "Wednesday": "星期三",
-    "Thursday": "星期四",
-    "Friday": "星期五",
-    "Saturday": "星期六",
-    "Sunday": "星期日",
+    "Monday": "月曜日",
+    "Tuesday": "火曜日",
+    "Wednesday": "水曜日",
+    "Thursday": "木曜日",
+    "Friday": "金曜日",
+    "Saturday": "土曜日",
+    "Sunday": "日曜日",
 }
 
 

@@ -147,17 +147,17 @@ class DeviceIoTExecutor(ToolExecutor):
                         "type": "function",
                         "function": {
                             "name": tool_name,
-                            "description": f"查询{device_desc}的{prop_info['description']}",
+                            "description": f"Query {device_desc}'s {prop_info['description']}",
                             "parameters": {
                                 "type": "object",
                                 "properties": {
                                     "response_success": {
                                         "type": "string",
-                                        "description": f"查询成功时的友好回复，必须使用{{value}}作为占位符表示查询到的值",
+                                        "description": f"Friendly reply when the query succeeds. Must use {{value}} as the placeholder for the queried value.",
                                     },
                                     "response_failure": {
                                         "type": "string",
-                                        "description": f"查询失败时的友好回复",
+                                        "description": f"Friendly reply when the query fails",
                                     },
                                 },
                                 "required": ["response_success", "response_failure"],
@@ -200,11 +200,11 @@ class DeviceIoTExecutor(ToolExecutor):
                         {
                             "response_success": {
                                 "type": "string",
-                                "description": "操作成功时的友好回复",
+                                "description": "Friendly reply when the operation succeeds",
                             },
                             "response_failure": {
                                 "type": "string",
-                                "description": "操作失败时的友好回复",
+                                "description": "Friendly reply when the operation fails",
                             },
                         }
                     )
