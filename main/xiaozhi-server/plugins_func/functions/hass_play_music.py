@@ -15,17 +15,17 @@ hass_play_music_function_desc = {
     "type": "function",
     "function": {
         "name": "hass_play_music",
-        "description": "用户想听音乐、有声书的时候使用，在房间的媒体播放器（media_player）里播放对应音频",
+        "description": "Use this when the user wants to listen to music or an audiobook. Play the corresponding audio on the room media player.",
         "parameters": {
             "type": "object",
             "properties": {
                 "media_content_id": {
                     "type": "string",
-                    "description": "可以是音乐或有声书的专辑名称、歌曲名、演唱者,如果未指定就填random",
+                    "description": "Album name, song title, or artist for music or audiobooks. Use random if not specified.",
                 },
                 "entity_id": {
                     "type": "string",
-                    "description": "需要操作的音箱的设备id,homeassistant里的entity_id,media_player开头",
+                    "description": "Speaker device ID to operate on, the entity_id in Home Assistant. It should start with media_player.",
                 },
             },
             "required": ["media_content_id", "entity_id"],

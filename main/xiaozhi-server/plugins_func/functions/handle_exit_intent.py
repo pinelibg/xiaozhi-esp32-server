@@ -12,13 +12,13 @@ handle_exit_intent_function_desc = {
     "type": "function",
     "function": {
         "name": "handle_exit_intent",
-        "description": "当用户想结束对话或需要退出系统时调用",
+        "description": "Call this when the user wants to end the conversation or exit the system.",
         "parameters": {
             "type": "object",
             "properties": {
                 "say_goodbye": {
                     "type": "string",
-                    "description": "和用户友好结束对话的告别语",
+                    "description": "A friendly farewell message to end the conversation with the user",
                 }
             },
             "required": ["say_goodbye"],

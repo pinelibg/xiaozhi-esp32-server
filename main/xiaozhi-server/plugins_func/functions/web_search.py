@@ -15,7 +15,7 @@ TAG = __name__
 logger = setup_logging()
 
 _DEFAULT_DESCRIPTION = (
-    "联网搜索工具。当用户明确需要联网搜索问题时使用此工具。"
+    "Web search tool. Use this tool when the user explicitly needs an online search."
 )
 
 WEB_SEARCH_FUNCTION_DESC = {
@@ -28,7 +28,7 @@ WEB_SEARCH_FUNCTION_DESC = {
             "properties": {
                 "query": {
                     "type": "string",
-                    "description": "搜索关键词或问题",
+                    "description": "Search keywords or question",
                 }
             },
             "required": ["query"],

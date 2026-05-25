@@ -7,21 +7,21 @@ get_lunar_function_desc = {
     "function": {
         "name": "get_lunar",
         "description": (
-            "用于具体日期的阴历/农历和黄历信息。"
-            "用户可以指定查询内容，如：阴历日期、天干地支、节气、生肖、星座、八字、宜忌等。"
-            "如果没有指定查询内容，则默认查询干支年和农历日期。"
-            "对于'今天农历是多少'、'今天农历日期'这样的基本查询，请直接使用context中的信息，不要调用此工具。"
+            "Use this for lunar calendar and traditional almanac information for a specific date. "
+            "The user can specify what to query, such as lunar date, Heavenly Stems and Earthly Branches, solar terms, Chinese zodiac, zodiac sign, Four Pillars, auspicious and inauspicious activities, and similar information. "
+            "If no query content is specified, query the sexagenary year and lunar date by default. "
+            "For basic questions such as 'What is today's lunar date?' or 'today's lunar calendar date', use the information in context directly and do not call this tool."
         ),
         "parameters": {
             "type": "object",
             "properties": {
                 "date": {
                     "type": "string",
-                    "description": "要查询的日期，格式为YYYY-MM-DD，例如2024-01-01。如果不提供，则使用当前日期",
+                    "description": "Date to query in YYYY-MM-DD format, for example 2024-01-01. If not provided, use the current date.",
                 },
                 "query": {
                     "type": "string",
-                    "description": "要查询的内容，例如阴历日期、天干地支、节日、节气、生肖、星座、八字、宜忌等",
+                    "description": "Content to query, such as lunar date, Heavenly Stems and Earthly Branches, festivals, solar terms, Chinese zodiac, zodiac sign, Four Pillars, auspicious and inauspicious activities, and similar information.",
                 },
             },
             "required": [],

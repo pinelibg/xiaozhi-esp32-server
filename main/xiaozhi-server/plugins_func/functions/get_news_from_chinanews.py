@@ -18,24 +18,24 @@ GET_NEWS_FROM_CHINANEWS_FUNCTION_DESC = {
     "function": {
         "name": "get_news_from_chinanews",
         "description": (
-            "当用户要求查看或收听新闻时调用（如'来条新闻''今天有什么新闻'）。"
-            "用户可以指定新闻类型，如社会新闻、科技新闻、国际新闻等。"
-            "如果没有指定，默认播报社会新闻。"
+            "Call this when the user asks to view or listen to news, such as 'give me some news' or 'what news is there today?'. "
+            "The user can specify a news category, such as society, technology, international news, and so on. "
+            "If no category is specified, report society news by default."
         ),
         "parameters": {
             "type": "object",
             "properties": {
                 "category": {
                     "type": "string",
-                    "description": "新闻类别，例如社会、科技、国际。可选参数，如果不提供则使用默认类别",
+                    "description": "News category, for example society, technology, or international. Optional; use the default category if not provided.",
                 },
                 "detail": {
                     "type": "boolean",
-                    "description": "是否获取详细内容，默认为false。如果为true，则获取上一条新闻的详细内容",
+                    "description": "Whether to get detailed content. Defaults to false. If true, get the details of the previous news item.",
                 },
                 "lang": {
                     "type": "string",
-                    "description": "返回用户使用的语言code，例如zh_CN/zh_HK/en_US/ja_JP等，默认zh_CN",
+                    "description": "Language code to use in the response, for example zh_CN/zh_HK/en_US/ja_JP. Defaults to zh_CN.",
                 },
             },
             "required": ["lang"],
