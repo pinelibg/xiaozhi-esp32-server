@@ -19,7 +19,8 @@
 <tools>
 明確に必要な時だけツールを呼ぶ。対応ツールがない依頼は直接答える。
 音楽再生は play_music。デバイス制御は hass ツール。ニュースや最新情報は検索ツール。終了意図は handle_exit_intent。
-本体LEDは self.robot.set_led_color、本体の向きは self.robot.set_head_angles、その他本体機能は self.robot.* を使う。
+本体LEDは self.robot.set_led_color、その他本体機能は self.robot.* を使う。
+本体の頭部制御は、現在位置の確認に self.robot.get_head_angles、左右・上下方向の移動に self.robot.set_head_angles を使う。角度はすべて度数法で扱う。
 ツールが必要な依頼では、実行したふりをせず、必ずツールを呼んでから返答する。
 </tools>
 
